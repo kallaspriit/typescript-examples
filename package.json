@@ -1,0 +1,18 @@
+{
+  "name": "ts",
+  "version": "1.0.0",
+  "main": "build/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn tidy && tsc",
+    "start": "yarn tidy && tsc -w",
+    "tidy": "rimraf build",
+    "lint": "tslint --format codeFrame src/**/*.ts"
+  },
+  "dependencies": {
+    "rimraf": "^2.6.2",
+    "tslint": "^5.8.0",
+    "tslint-config-prettier": "^1.6.0",
+    "typescript": "^2.6.2"
+  }
+}
