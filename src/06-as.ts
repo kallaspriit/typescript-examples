@@ -1,4 +1,6 @@
+// tslint:disable-next-line:no-any
 function lazyLibrary(a: any, b: any): any {
+  // tslint:disable-next-line:restrict-plus-operands
   return a + b;
 }
 

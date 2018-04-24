@@ -11,7 +11,7 @@ interface ICircleShape {
 type Shape = IRectangleShape | ICircleShape;
 
 function assertNever(x: never): never {
-  throw new Error("Unexpected object: " + x);
+  throw new Error(`Unexpected object: ${x}`);
 }
 
 function logShapeArea(shape: Shape) {
@@ -24,6 +24,7 @@ function logShapeArea(shape: Shape) {
       console.log(`circle has area of ${Math.PI * shape.radius ** 2}`);
       break;
 
+    // make sure we don't forget to handle a kind
     default:
       assertNever(shape);
   }

@@ -35,7 +35,7 @@ greetPerson(person1);
 greetPerson(person2);
 
 interface IShape {
-  getArea: () => number;
+  getArea(): number;
 }
 
 interface ISquare extends IShape {

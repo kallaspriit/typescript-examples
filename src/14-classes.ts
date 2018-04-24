@@ -1,13 +1,13 @@
 interface IVehicle {
   name: string;
-  getSpeed: () => number;
+  getSpeed(): number;
 }
 
 class Wheel {
   private speed: number;
 
-  constructor(public radius: number, initialSpeed = 0) {
-    this.setSpeed(initialSpeed);
+  public constructor(public radius: number, initialSpeed = 0) {
+    this.speed = initialSpeed;
   }
 
   public getSpeed() {
@@ -19,24 +19,22 @@ class Wheel {
   }
 }
 
-// tslint:disable-next-line:max-classes-per-file
 class Car implements IVehicle {
-  private wheels: Wheel[];
+  private readonly wheels: Wheel[];
 
-  constructor(public name: string, private wheelRadius: number = 100) {
+  public constructor(public name: string, wheelRadius: number = 100) {
     this.wheels = [
-      new Wheel(this.wheelRadius),
-      new Wheel(this.wheelRadius),
-      new Wheel(this.wheelRadius),
-      new Wheel(this.wheelRadius)
+      new Wheel(wheelRadius),
+      new Wheel(wheelRadius),
+      new Wheel(wheelRadius),
+      new Wheel(wheelRadius)
     ];
   }
 
   public getSpeed() {
     return (
-      this.wheels.reduce((speedSum, wheel) => {
-        return speedSum + wheel.getSpeed();
-      }, 0) / this.wheels.length
+      this.wheels.reduce((speedSum, wheel) => speedSum + wheel.getSpeed(), 0) /
+      this.wheels.length
     );
   }
 

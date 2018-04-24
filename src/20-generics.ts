@@ -32,12 +32,19 @@ function getLength<T extends IHasLength>(a: T): number {
   return a.length;
 }
 
+class Building {
+  public constructor(public name: string, public length: number) {}
+}
+
+const burjKhalifa = new Building("Burj Khalifa", 828);
+
 console.log("length of string", getLength("hello"));
 console.log("length of array", getLength([1, 2, 3]));
+console.log("length of building", getLength(burjKhalifa));
 
 class Store<T> {
   // private items: T[];
-  private items: T[] = [];
+  private readonly items: T[] = [];
 
   public addItem(item: T) {
     this.items.push(item);

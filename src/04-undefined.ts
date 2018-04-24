@@ -1,5 +1,5 @@
 function greet(name: string | undefined) {
-  if (name) {
+  if (typeof name === "string") {
     console.log(`hey ${name}!`);
   } else {
     console.log(`hey stranger!`);
@@ -7,7 +7,7 @@ function greet(name: string | undefined) {
 }
 
 function greet2(name?: string) {
-  if (name) {
+  if (typeof name === "string") {
     console.log(`hey ${name}!`);
   } else {
     console.log(`hey stranger!`);
@@ -15,7 +15,7 @@ function greet2(name?: string) {
 }
 
 function getGreeting(name?: string): string | undefined {
-  if (name) {
+  if (typeof name === "string") {
     return `hey ${name}!`;
   }
 

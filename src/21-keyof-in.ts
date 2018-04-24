@@ -1,3 +1,4 @@
+// keyof interface/class
 interface IAddress {
   country: string;
   street: string;
@@ -5,13 +6,14 @@ interface IAddress {
 }
 
 class Address implements IAddress {
-  constructor(
+  public constructor(
     public country: string,
     public street: string,
     public building: number
   ) {}
 
   public getProperty(name: keyof IAddress) {
+    // public getProperty(name: keyof Address) {
     return this[name];
   }
 }
@@ -20,12 +22,14 @@ const myAddress = new Address("Estonia", "Lai", 29);
 console.log(`building: ${myAddress.getProperty("building")}`);
 // console.log(`xxx: ${myAddress.getProperty("xxx")}`);
 
+// keyof enum
 enum LoggerLevel {
   INFO = "info",
   WARN = "warn",
   ERROR = "error"
 }
 
+// typeof required!
 type LoggerLevelName = keyof typeof LoggerLevel;
 
 function logMessage(level: LoggerLevelName, message: string) {

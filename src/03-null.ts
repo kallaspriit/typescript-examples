@@ -1,11 +1,3 @@
-enum Suite {
-  Clubs,
-  Diamonds,
-  Hearts,
-  Spades
-}
-const card: [number, Suite] = [5, Suite.Clubs]; // tuple
-
 function getSuiteByName(name: string): Suite | null {
   switch (name) {
     case "clubs":
@@ -19,9 +11,11 @@ function getSuiteByName(name: string): Suite | null {
 
     case "spades":
       return Suite.Spades;
-  }
 
-  return null;
+    default:
+      // tslint:disable-next-line:no-null-keyword
+      return null;
+  }
 }
 
 const suite = getSuiteByName("clubs");
