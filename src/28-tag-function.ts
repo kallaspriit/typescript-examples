@@ -2,10 +2,10 @@ interface ITranslations {
   [x: string]: string | undefined;
 }
 
-type ConcatenatableToken = string | number;
+type ConcatenatableToken = string | number | undefined;
 
 const translations: ITranslations = {
-  "hello $ of $ years old!": "tere $ kes sa oled $ aastane!"
+  "$ is $ years old.": "$ on $ aastane."
 };
 
 // tslint:disable-next-line:no-any
@@ -30,7 +30,7 @@ function translate(
 
   return translatedParts.reduce(
     (result, part, i) =>
-      `${result}${part}${expressions[i] ? expressions[i] : ""}`,
+      `${result}${part}${expressions[i] !== undefined ? expressions[i] : ""}`,
     ""
   );
 }
@@ -40,5 +40,5 @@ const user = {
   age: 30
 };
 
-console.log(translate`hello ${user.name} of ${user.age} years old!`);
-console.log(translate`greetings ${user.name}!`);
+console.log(translate`${user.name} is ${user.age} years old.`);
+console.log(translate`Welcome back ${user.name}!`);
