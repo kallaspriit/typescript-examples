@@ -52,22 +52,22 @@ async function fetchAll3(urls: string[]): Promise<string[]> {
     \|__|     \|_______|\|__|           \|___| \__\|_______|\|__|\|_______|
                                               \|__|
 
-A: SAME TIME
+A: NO VALUES
+[]
+
+B: SAME TIME
  [
   'test1.com (16:11:42)',
   'test2.com (16:11:42)',
   'test3.com (16:11:42)'
 ]
 
-B: INCREMENTING TIME
+C: INCREMENTING TIME
 [
   'test1.com (16:11:43)',
   'test2.com (16:11:44)',
   'test3.com (16:11:45)'
 ]
-
-C: NO VALUES
-[]
 
 D: ERROR
 Uncaught exception..
