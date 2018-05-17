@@ -1,48 +1,47 @@
-// dummy async that "fetches" some data (current date as string)
-async function fetch(url: string): Promise<string> {
-  return new Promise<string>(resolve =>
-    setTimeout(() => resolve(`${url} (${getTime()})`), 1000)
-  );
-}
-
-(async () => {
-  console.log("simple", await fetch("simple.com"));
-
-  /////////////////////////////////////
-
-  const urls = ["test1.com", "test2.com", "test3.com"];
-
-  // order?
-  console.log("fetchAll1", await fetchAll1(urls));
-  console.log("fetchAll2", await fetchAll2(urls));
-  console.log("fetchAll3", await fetchAll3(urls));
-})().catch(error => console.error(error));
-
-async function fetchAll1(urls: string[]): Promise<string[]> {
-  return Promise.all(urls.map(async url => fetch(url)));
-}
-
-async function fetchAll2(urls: string[]): Promise<string[]> {
-  const result: string[] = [];
-
-  for (const url of urls) {
-    result.push(await fetch(url));
+export namespace Example32 {
+  // dummy async that "fetches" some data (date as string)
+  async function fetch(url: string): Promise<string> {
+    return new Promise<string>(resolve =>
+      setTimeout(() => resolve(`${url} (${getTime()})`), 1000)
+    );
   }
 
-  return result;
-}
+  async function fetchAll1(urls: string[]): Promise<string[]> {
+    return Promise.all(urls.map(async url => fetch(url)));
+  }
 
-async function fetchAll3(urls: string[]): Promise<string[]> {
-  const result: string[] = [];
+  async function fetchAll2(urls: string[]): Promise<string[]> {
+    const result: string[] = [];
 
-  urls.forEach(async url => {
-    result.push(await fetch(url));
-  });
+    for (const url of urls) {
+      result.push(await fetch(url));
+    }
 
-  return result;
-}
+    return result;
+  }
 
-/*
+  async function fetchAll3(urls: string[]): Promise<string[]> {
+    const result: string[] = [];
+
+    urls.forEach(async url => {
+      result.push(await fetch(url));
+    });
+
+    return result;
+  }
+
+  (async () => {
+    // console.log("simple", await fetch("simple.com"));
+
+    const urls = ["test1.com", "test2.com", "test3.com"];
+
+    // what is the output of each fetchAll implementation?
+    console.log("fetchAll1", await fetchAll1(urls));
+    console.log("fetchAll2", await fetchAll2(urls));
+    console.log("fetchAll3", await fetchAll3(urls));
+  })().catch(console.error);
+
+  /*
  ________  ________  ________        ________  ___  ___  ___  ________
 |\   __  \|\   __  \|\   __  \      |\   __  \|\  \|\  \|\  \|\_____  \
 \ \  \|\  \ \  \|\  \ \  \|\  \     \ \  \|\  \ \  \\\  \ \  \\|___/  /|
@@ -74,13 +73,14 @@ Uncaught exception..
 
 */
 
-// just return current time 16:15:32 etc
-function getTime() {
-  const date = new Date();
+  // just return current time 16:15:32 etc
+  function getTime() {
+    const date = new Date();
 
-  return `${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${
-    date.getMinutes() < 10 ? "0" : ""
-  }${date.getMinutes()}:${
-    date.getSeconds() < 10 ? "0" : ""
-  }${date.getSeconds()}`;
+    return `${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${
+      date.getMinutes() < 10 ? "0" : ""
+    }${date.getMinutes()}:${
+      date.getSeconds() < 10 ? "0" : ""
+    }${date.getSeconds()}`;
+  }
 }
