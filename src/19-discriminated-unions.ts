@@ -1,42 +1,57 @@
-interface IRectangleShape {
-  kind: "rectangle";
-  width: number;
-  height: number;
-}
-interface ICircleShape {
-  kind: "circle";
-  radius: number;
-}
+namespace Example19 {
+  interface IRectangleShape {
+    kind: "rectangle";
+    width: number;
+    height: number;
+  }
 
-type Shape = IRectangleShape | ICircleShape;
+  interface ICircleShape {
+    kind: "circle";
+    radius: number;
+  }
 
-function assertNever(x: never): never {
-  throw new Error(`Unexpected object: ${x}`);
-}
+  type Shape = IRectangleShape | ICircleShape;
 
-function logShapeArea(shape: Shape) {
-  switch (shape.kind) {
-    case "rectangle":
-      console.log(`rectangle has area of ${shape.height * shape.width}`);
-      break;
+  function logShapeArea(shape: Shape) {
+    switch (shape.kind) {
+      case "rectangle":
+        // we know that rectangle has height and width
+        console.log(
+          `rectangle ${shape.height}x${shape.width} has area of ${shape.height *
+            shape.width}`
+        );
+        break;
 
-    case "circle":
-      console.log(`circle has area of ${Math.PI * shape.radius ** 2}`);
-      break;
+      // try removing or renaming
+      case "circle":
+        // we know that circle has a radius
+        console.log(
+          `circle of radius ${shape.radius} has area of ${Math.PI *
+            shape.radius ** 2}`
+        );
+        break;
 
-    // make sure we don't forget to handle a kind
-    default:
-      assertNever(shape);
+      // make sure we don't forget to handle a shape kind
+      default:
+        assertUnreachable(
+          shape,
+          `got unexpected shape kind, this should not happen`
+        );
+    }
+  }
+
+  logShapeArea({
+    kind: "rectangle",
+    width: 10,
+    height: 20
+  });
+
+  logShapeArea({
+    kind: "circle",
+    radius: 5
+  });
+
+  function assertUnreachable(_impossible: never, message: string): never {
+    throw new Error(message);
   }
 }
-
-logShapeArea({
-  kind: "rectangle",
-  width: 10,
-  height: 20
-});
-
-logShapeArea({
-  kind: "circle",
-  radius: 5
-});
