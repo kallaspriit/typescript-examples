@@ -5,6 +5,7 @@
     "no-magic-numbers": false,
     "comment-format": false,
     "ban-types": false,
-    "no-namespace": false
+    "no-namespace": false,
+    "no-any": false
   }
 }

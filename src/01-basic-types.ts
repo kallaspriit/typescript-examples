@@ -15,7 +15,6 @@ namespace Example01 {
 
   const card: [number, Suite] = [5, Suite.Clubs]; // tuple
 
-  // tslint:disable-next-line:no-any
   let something: any;
   something = 5;
   something = "test";

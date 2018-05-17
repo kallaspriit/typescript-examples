@@ -8,7 +8,6 @@ const translations: ITranslations = {
   "$ is $ years old.": "$ on $ aastane."
 };
 
-// tslint:disable-next-line:no-any
 function translate(
   parts: TemplateStringsArray,
   ...expressions: ConcatenatableToken[]

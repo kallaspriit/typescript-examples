@@ -1,5 +1,3 @@
-// tslint:disable:no-any
-
 function protocol(protocolName: string) {
   console.log(`protocol() evaluated: ${protocolName}"`);
 

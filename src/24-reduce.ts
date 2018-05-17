@@ -11,12 +11,10 @@ const cats: Cat[] = [
 
 interface IHasAge {
   age: number;
-  // tslint:disable-next-line:no-any
   [x: string]: any;
 }
 
 function getAverageAge(
-  // tslint:disable-next-line:no-any
   items: Array<{ age: number; [x: string]: any }>
 ): number {
   // function getAverageAge(items: IHasAge[]): number {
@@ -91,7 +89,6 @@ const logCountMap: LogCountMap = logEntries.reduce(
   // how to define initial value?
   // {} // [ts] Type '{}' is not assignable to type 'LogCountMap'. Property 'INFO' is missing in type '{}'.
   // { info: 0, error: 0 } // works but need to be explicit
-  // tslint:disable-next-line:no-any
   ({} as any) as LogCountMap // works but not entirely correct
 );
 
