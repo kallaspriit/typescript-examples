@@ -12,6 +12,7 @@ function getExchangeRate(currency: Currency): number {
     case Currency.USD:
       return 1 / 10.0;
 
+    // try changing / commeting out
     case Currency.EUR:
       return 1 / 15.0;
 

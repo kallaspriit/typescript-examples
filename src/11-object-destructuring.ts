@@ -1,5 +1,4 @@
-(() => {
-  // IIFE - immediately-invoked function expression
+namespace Example11 {
   const user = {
     age: 29,
     firstName: "Priit",
@@ -11,43 +10,35 @@
   console.log(`hey ${firstName} ${lastName}`, otherInfo);
   // console.log(otherInfo.age, otherInfo.profession);
 
-  const { firstName: forename } = user;
+  // rename destructured property
+  const { firstName: givenName } = user;
 
-  console.log(`hey ${forename}!`);
-})();
+  console.log(`hey ${givenName}!`);
 
-interface IUser {
-  firstName: string;
-  lastName: string;
-  age?: number;
-}
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function greetUser({ firstName, lastName, age = -1 }: IUser) {
-  console.log(`${firstName} ${lastName} is ${age} years old`);
-}
-
-greetUser({
-  firstName: "Priit",
-  lastName: "Kallas",
-  age: 29
-});
-
-greetUser({
-  firstName: "Jack",
-  lastName: "Daniels"
-});
-
-function greetUser2(
-  { firstName, lastName, age = -1 }: IUser = {
-    firstName: "John",
-    lastName: "Doe"
+  interface IUser {
+    firstName: string;
+    lastName: string;
+    age?: number;
   }
-) {
-  console.log(`${firstName} ${lastName} is ${age} years old`);
-}
 
-greetUser2();
-greetUser2({
-  firstName: "Jack",
-  lastName: "Daniels"
-});
+  function greetUser({
+    firstName: forename,
+    lastName: surname,
+    age = -1
+  }: IUser) {
+    console.log(`${forename} ${surname} is ${age} years old`);
+  }
+
+  greetUser({
+    firstName: "Priit",
+    lastName: "Kallas",
+    age: 29
+  });
+
+  greetUser({
+    firstName: "Jack",
+    lastName: "Daniels"
+  });
+}

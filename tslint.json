@@ -4,6 +4,7 @@
     "max-classes-per-file": false,
     "no-magic-numbers": false,
     "comment-format": false,
-    "ban-types": false
+    "ban-types": false,
+    "no-namespace": false
   }
 }

@@ -12,6 +12,7 @@ const a1 = sum1(2, 3);
 const a2 = sum2(2, 3);
 
 function concat(a: string, b: string) /*:string*/ {
+  // try toggling return value
   return a + b;
   // return a > b;
 }

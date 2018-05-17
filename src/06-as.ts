@@ -9,5 +9,9 @@ function sum(a: number, b: number): number {
 }
 
 const result1 = lazyLibrary(2, 3);
+const result2 = sum(result1, 4);
+const result3 = lazyLibrary("a", [2]);
 
-const result2 = sum(result1 as number, 4);
+console.log("result1", result1);
+console.log("result2", result2);
+console.log("result3", result3);
