@@ -1,23 +1,30 @@
-interface IWriteFileOptions {
-  filename: string;
-  contents: string;
-  encoding?: string;
-}
+export namespace Example30 {
+  interface IWriteFileOptions {
+    filename: string;
+    contents: string;
+    encoding?: string;
+  }
 
-// make all properties readonly and required (adds readonly, strips ? modifiers from all properties of T)
-type ReadonlyRequired<T> = { readonly [P in keyof T]-?: T[P] };
+  // make all properties readonly and required (adds readonly, strips ? modifiers from all properties of T)
+  type ReadonlyRequired<T> = { readonly [P in keyof T]-?: T[P] };
 
-// lack of + is the same as +
-// type ReadonlyRequired<T> = { +readonly [P in keyof T]-?: T[P] };
+  // lack of + is the same as +
+  // type ReadonlyRequired<T> = { +readonly [P in keyof T]-?: T[P] };
 
-function writeFile(userOptions: IWriteFileOptions) {
-  const options: ReadonlyRequired<IWriteFileOptions> = {
-    encoding: "utf8", // try commenting this out
-    ...userOptions
-  };
+  function writeFile(userOptions: IWriteFileOptions) {
+    const options: ReadonlyRequired<IWriteFileOptions> = {
+      encoding: "utf8", // try commenting this out
+      ...userOptions
+    };
 
-  // [ts] Cannot assign to 'encoding' because it is a constant or a read-only property.
-  // options.encoding = "test";
+    // [ts] Cannot assign to 'encoding' because it is a constant or a read-only property.
+    // options.encoding = "test";
 
-  console.log("writeFile2", options.encoding.length, options);
+    console.log("writeFile", options.encoding.length, options);
+  }
+
+  writeFile({
+    filename: "test.txt",
+    contents: "Hello World!"
+  });
 }
